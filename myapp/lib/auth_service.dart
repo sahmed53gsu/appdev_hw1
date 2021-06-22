@@ -52,6 +52,20 @@ class AuthService {
       print(e);
     });
   }
+
+  //if admin
+  authorizeAccess(BuildContext context) {
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    FirebaseFirestore.instance
+        .collection('users')
+        .where('uid', isEqualTo: currentUser!.uid)
+        .get()
+        .then((docs) {
+      if (docs.docs[0].data()['role'] == 'admin') {
+        return true;
+      }
+    });
+  }
 }
 
 Future<void> addUser(fname, lname, role) async {
