@@ -14,9 +14,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("Saadh's Messages")),
       body: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               ButtonTheme(
                 height: 50,
@@ -59,6 +61,9 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+          SizedBox(
+            height: 100,
+          ),
           StreamBuilder(
               stream:
                   FirebaseFirestore.instance.collection('posts').snapshots(),
@@ -76,7 +81,13 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         width: MediaQuery.of(context).size.width / 1.2,
                         height: MediaQuery.of(context).size.width / 6,
-                        child: Text('Message: ' + document['message']),
+                        child: Column(
+                          children: [
+                            Text('Message: ' + document['message'].toString()),
+                            Text('Date: ' +
+                                document['dtime'].toDate().toString()),
+                          ],
+                        ),
                       ),
                     );
                   }).toList(),
