@@ -105,8 +105,8 @@ class _RegisterState extends State<Register> {
                   height: 50,
                   disabledColor: Colors.blueAccent,
                   child: ElevatedButton(
-                    onPressed: () {
-                      AuthService()
+                    onPressed: () async {
+                      await AuthService()
                           .createNewUser(fname, lname, email, password);
                       //Navigator.of(context).pop();
                       Navigator.of(context).pushReplacement(

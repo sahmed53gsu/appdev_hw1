@@ -42,8 +42,9 @@ class AuthService {
   }
 
   //signup
-  createNewUser(fname, lname, email, password, {role = 'customer'}) {
-    FirebaseAuth.instance
+  Future<void> createNewUser(fname, lname, email, password,
+      {role = 'customer'}) async {
+    await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((user) {
       addUser(fname, lname, role);
