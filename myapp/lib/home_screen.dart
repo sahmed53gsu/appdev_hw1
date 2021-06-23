@@ -10,6 +10,41 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  showAlertDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = ElevatedButton(
+      child: Text("Logout"),
+      onPressed: () {
+        AuthService().signOut();
+        Navigator.pop(context);
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Wait!"),
+      content: Text("Are you sure you want to logout?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   Future createBox(BuildContext context) {
     TextEditingController myController = TextEditingController();
 
@@ -24,11 +59,18 @@ class _HomePageState extends State<HomePage> {
             actions: <Widget>[
               MaterialButton(
                 elevation: 5.0,
+                child: Text('Exit'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              MaterialButton(
+                elevation: 5.0,
                 child: Text('Submit'),
                 onPressed: () {
                   Navigator.of(context).pop(myController.text.toString());
                 },
-              )
+              ),
             ],
           );
         });
@@ -50,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                   disabledColor: Colors.blueAccent,
                   child: ElevatedButton(
                     onPressed: () {
-                      AuthService().signOut();
+                      showAlertDialog(context);
                     },
                     child: Text('Logout',
                         style: TextStyle(fontSize: 20, color: Colors.white)),
@@ -130,7 +172,9 @@ class _HomePageState extends State<HomePage> {
           child: Icon(Icons.add),
           onPressed: () {
             createBox(context).then((onValue) {
-              AuthService().postUp(onValue);
+              if (onValue != null) {
+                AuthService().postUp(onValue);
+              }
             });
           },
         ),
