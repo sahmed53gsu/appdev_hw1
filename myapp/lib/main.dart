@@ -28,6 +28,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("Saadh Fans")),
       backgroundColor: Colors.blue[400],
       body: SafeArea(
         child: ListView(

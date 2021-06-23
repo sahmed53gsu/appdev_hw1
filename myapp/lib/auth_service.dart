@@ -54,6 +54,7 @@ class AuthService {
   }
 
   //if admin
+  /*
   authorizeAccess(BuildContext context) {
     User? currentUser = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance
@@ -61,11 +62,45 @@ class AuthService {
         .where('uid', isEqualTo: currentUser!.uid)
         .get()
         .then((docs) {
-      if (docs.docs[0].data()['role'] == 'admin') {
+      if (docs.data()['role'] == 'admin') {
+        print('yomama');
         return true;
+      } else {
+        print('yeoyeo');
+        return false;
       }
     });
+  } */
+
+  authorizeAccess() {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    if (FirebaseAuth.instance.currentUser!.uid ==
+        'KRQEAXmFZWezETQYtUEtfMOKWrE3') {
+      return true;
+    }
+    return false;
   }
+
+  postUp(message) {
+    postMessage(message);
+  }
+
+  /*
+  authorizeAccess() async {
+    final firebaseUser = await FirebaseAuth.instance.currentUser!;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(firebaseUser.uid)
+        .get()
+        .then((ds) {
+      print('yomama');
+      if (ds.data()!["role"] == 'admin') {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  } */
 }
 
 Future<void> addUser(fname, lname, role) async {
@@ -80,6 +115,19 @@ Future<void> addUser(fname, lname, role) async {
         'uid': FirebaseAuth.instance.currentUser!.uid
       })
       .then((value) => print("User Added"))
+      .catchError((error) => print("Failed to add user: $error"));
+}
+
+Future<void> postMessage(message) async {
+  CollectionReference users = FirebaseFirestore.instance.collection('posts');
+  // Call the user's CollectionReference to add a new user
+  return users
+      .add({
+        'message': message,
+        'dtime': DateTime.now(),
+        'uid': FirebaseAuth.instance.currentUser!.uid
+      })
+      .then((value) => print("message posted"))
       .catchError((error) => print("Failed to add user: $error"));
 }
 
