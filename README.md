@@ -4,57 +4,33 @@
 
 This app is a simple app that allows users to log in and see messages posted by the admin. The app contains a splash screen, login page, signup page, and home page. The login and sign up pages use Firebase Authentication and store user data in Firestore, respectively. The home page allows the user to see messages that are read from Firestore. The admin is allowed to post messages which are displayed in real time.
 
-## Getting Started
-
 ### Dependencies
 
-* In order to run the code you need to download the 
-* ex. Windows 10
+* In order to run the code you need to download the myapp folder. The important folders within this directory are the android, assets, lib, and web folders. You will also need to download the pubspec.lock and pubspec.yaml files
+* You will also have to download vscode with the flutter and dart extensions.
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Download the entire myapp folder, or download the important directories within the myapp folder. If you opt to download only some of the folders, you will need to save them in a folder titled "myapp".
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+* Open the myapp folder in vscode and navigate to the pubspec.yaml file. Manually save the file to download the flutter-specific dependencies.
+* In the terminal type
+   ```
+   flutter channel
+   ```
+   If you are not in the master channel, then move to the master channel.
+* Navigate to main.dart inside the lib folder and then on the top bar, press "tools" and then "run without debugging." This will run the app without any issues. Make sure to select "Chrome" to run the web app and select an android emulator or physical device to run the app in Android.
 
-## Help
+## Demo
+* Web app demo
+[![myapp on chrome](![image](https://user-images.githubusercontent.com/55520063/123499339-f181e580-d603-11eb-8245-25d3dfa12844.png))](https://www.youtube.com/watch?v=xiWlwNAe0j0&ab_channel=SaadhAhmed "Saadh - Fans App Web Demo")
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+* Android app demo
+[![myapp on android](![image](![image](https://user-images.githubusercontent.com/55520063/123499363-2d1caf80-d604-11eb-9832-5a1f78ef4d62.png)))](https://www.youtube.com/watch?v=25lrbGs1Kwk&ab_channel=SaadhAhmed "Saadh - Fans App Android Demo")
 
-## Authors
+## IMPORTANT - Login information
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+* Admin username: admin@admin.com
+* Admin password: admin123
